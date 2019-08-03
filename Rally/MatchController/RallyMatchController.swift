@@ -8,26 +8,12 @@
 
 import Foundation
 import SwiftUI
-
-public enum RallyTeam {
-    case one
-    case two
-    
-    func toggle() -> RallyTeam {
-        return self == .one ? .two : .one
-    }
-}
-
-public protocol RallyMatchConfigurable {
-    var limit: Int { get }
-    var winByTwo: Bool { get }
-    var serveInterval: Int { get }
-}
+import Combine
 
 /// What would a controller need?
 /// Teams? How would this be provided? If I was to say increment for .teamOne?
 /// Settings: - Win by two, max score, how would other racket sports respond.
-public class RallyMatchController {
+public class RallyMatchController: ObservableObject {
     
     // MARK: - Public Properties
     
@@ -35,15 +21,16 @@ public class RallyMatchController {
     
     // MARK: - Protected Properties
         
-    public internal(set) var teamOneScore: Int = 0 {
+    @Published public internal(set) var teamOneScore: Int = 0 { // TODO: Make Bindable
         didSet {
             if determineWin(for: .one) {
                 delegate?.teamDidWin(.one)
             }
+            
         }
     }
 
-    public internal(set) var teamTwoScore: Int = 0 {
+    @Published public internal(set) var teamTwoScore: Int = 0 { // TODO: Make Bindable
         didSet {
             if determineWin(for: .two) {
                 delegate?.teamDidWin(.two)
@@ -51,7 +38,7 @@ public class RallyMatchController {
         }
     }
     
-    public internal(set) var servingTeam: RallyTeam = .one {
+    @Published public internal(set) var servingTeam: RallyTeam = .one { // TODO: Make Bindable
         didSet {
             delegate?.teamWillServe(servingTeam)
         }
@@ -76,11 +63,10 @@ public class RallyMatchController {
         determineServingTeam()
     }
     
-    // MARK: - Methods
+    // MARK: - Internal Methods
     
     /// If combination of team scores are divisible by serve interval, toggle serves.
     /// If winByTwo, the team with the disadvantage will serve until they gain advantage.
-    ///
     func determineServingTeam() {
         if teamOneScore >= settings.limit || teamTwoScore >= settings.limit {
             // One score is over the limit.

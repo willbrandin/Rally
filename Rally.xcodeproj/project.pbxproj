@@ -12,6 +12,10 @@
 		D23326F022F3221E006BB18D /* Rally.h in Headers */ = {isa = PBXBuildFile; fileRef = D23326E222F3221E006BB18D /* Rally.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D233270522F322F6006BB18D /* RallyMatchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233270422F322F6006BB18D /* RallyMatchController.swift */; };
 		D24B470822F4B9E3007628E5 /* RallyMatchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233270422F322F6006BB18D /* RallyMatchController.swift */; };
+		D2EF3F5122F5F26000BBF154 /* RallyTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EF3F5022F5F26000BBF154 /* RallyTeam.swift */; };
+		D2EF3F5222F5F26000BBF154 /* RallyTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EF3F5022F5F26000BBF154 /* RallyTeam.swift */; };
+		D2EF3F5422F5F28100BBF154 /* RallyMatchConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EF3F5322F5F28100BBF154 /* RallyMatchConfigurable.swift */; };
+		D2EF3F5522F5F28100BBF154 /* RallyMatchConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EF3F5322F5F28100BBF154 /* RallyMatchConfigurable.swift */; };
 		D2F3CCE322F4B4E9009432B8 /* RallWatch.h in Headers */ = {isa = PBXBuildFile; fileRef = D2F3CCE122F4B4E9009432B8 /* RallWatch.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -33,6 +37,8 @@
 		D23326ED22F3221E006BB18D /* RallyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RallyTests.swift; sourceTree = "<group>"; };
 		D23326EF22F3221E006BB18D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D233270422F322F6006BB18D /* RallyMatchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RallyMatchController.swift; sourceTree = "<group>"; };
+		D2EF3F5022F5F26000BBF154 /* RallyTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RallyTeam.swift; sourceTree = "<group>"; };
+		D2EF3F5322F5F28100BBF154 /* RallyMatchConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RallyMatchConfigurable.swift; sourceTree = "<group>"; };
 		D2F3CCDF22F4B4E9009432B8 /* RallyWatch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RallyWatch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2F3CCE122F4B4E9009432B8 /* RallWatch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RallWatch.h; sourceTree = "<group>"; };
 		D2F3CCE222F4B4E9009432B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -87,6 +93,7 @@
 		D23326E122F3221E006BB18D /* Rally */ = {
 			isa = PBXGroup;
 			children = (
+				D2EF3F4F22F5F24E00BBF154 /* Enums */,
 				D233270622F322FD006BB18D /* Protocols */,
 				D233270322F322D7006BB18D /* MatchController */,
 				D233270222F32233006BB18D /* Models */,
@@ -123,8 +130,17 @@
 		D233270622F322FD006BB18D /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				D2EF3F5322F5F28100BBF154 /* RallyMatchConfigurable.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		D2EF3F4F22F5F24E00BBF154 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				D2EF3F5022F5F26000BBF154 /* RallyTeam.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 		D2F3CCE022F4B4E9009432B8 /* RallyWatch */ = {
@@ -284,6 +300,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D233270522F322F6006BB18D /* RallyMatchController.swift in Sources */,
+				D2EF3F5122F5F26000BBF154 /* RallyTeam.swift in Sources */,
+				D2EF3F5422F5F28100BBF154 /* RallyMatchConfigurable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,6 +318,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D24B470822F4B9E3007628E5 /* RallyMatchController.swift in Sources */,
+				D2EF3F5222F5F26000BBF154 /* RallyTeam.swift in Sources */,
+				D2EF3F5522F5F28100BBF154 /* RallyMatchConfigurable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
