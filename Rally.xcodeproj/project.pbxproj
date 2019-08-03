@@ -10,6 +10,9 @@
 		D23326E922F3221E006BB18D /* Rally.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23326DF22F3221E006BB18D /* Rally.framework */; };
 		D23326EE22F3221E006BB18D /* RallyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23326ED22F3221E006BB18D /* RallyTests.swift */; };
 		D23326F022F3221E006BB18D /* Rally.h in Headers */ = {isa = PBXBuildFile; fileRef = D23326E222F3221E006BB18D /* Rally.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D233270522F322F6006BB18D /* RallyMatchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233270422F322F6006BB18D /* RallyMatchController.swift */; };
+		D24B470822F4B9E3007628E5 /* RallyMatchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D233270422F322F6006BB18D /* RallyMatchController.swift */; };
+		D2F3CCE322F4B4E9009432B8 /* RallWatch.h in Headers */ = {isa = PBXBuildFile; fileRef = D2F3CCE122F4B4E9009432B8 /* RallWatch.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +32,10 @@
 		D23326E822F3221E006BB18D /* RallyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RallyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D23326ED22F3221E006BB18D /* RallyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RallyTests.swift; sourceTree = "<group>"; };
 		D23326EF22F3221E006BB18D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D233270422F322F6006BB18D /* RallyMatchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RallyMatchController.swift; sourceTree = "<group>"; };
+		D2F3CCDF22F4B4E9009432B8 /* RallyWatch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RallyWatch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2F3CCE122F4B4E9009432B8 /* RallWatch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RallWatch.h; sourceTree = "<group>"; };
+		D2F3CCE222F4B4E9009432B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +54,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D2F3CCDC22F4B4E9009432B8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -55,6 +69,7 @@
 			children = (
 				D23326E122F3221E006BB18D /* Rally */,
 				D23326EC22F3221E006BB18D /* RallyTests */,
+				D2F3CCE022F4B4E9009432B8 /* RallyWatch */,
 				D23326E022F3221E006BB18D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -64,6 +79,7 @@
 			children = (
 				D23326DF22F3221E006BB18D /* Rally.framework */,
 				D23326E822F3221E006BB18D /* RallyTests.xctest */,
+				D2F3CCDF22F4B4E9009432B8 /* RallyWatch.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -71,6 +87,9 @@
 		D23326E122F3221E006BB18D /* Rally */ = {
 			isa = PBXGroup;
 			children = (
+				D233270622F322FD006BB18D /* Protocols */,
+				D233270322F322D7006BB18D /* MatchController */,
+				D233270222F32233006BB18D /* Models */,
 				D23326E222F3221E006BB18D /* Rally.h */,
 				D23326E322F3221E006BB18D /* Info.plist */,
 			);
@@ -86,6 +105,37 @@
 			path = RallyTests;
 			sourceTree = "<group>";
 		};
+		D233270222F32233006BB18D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D233270322F322D7006BB18D /* MatchController */ = {
+			isa = PBXGroup;
+			children = (
+				D233270422F322F6006BB18D /* RallyMatchController.swift */,
+			);
+			path = MatchController;
+			sourceTree = "<group>";
+		};
+		D233270622F322FD006BB18D /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		D2F3CCE022F4B4E9009432B8 /* RallyWatch */ = {
+			isa = PBXGroup;
+			children = (
+				D2F3CCE122F4B4E9009432B8 /* RallWatch.h */,
+				D2F3CCE222F4B4E9009432B8 /* Info.plist */,
+			);
+			path = RallyWatch;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -94,6 +144,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				D23326F022F3221E006BB18D /* Rally.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2F3CCDA22F4B4E9009432B8 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2F3CCE322F4B4E9009432B8 /* RallWatch.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,6 +194,24 @@
 			productReference = D23326E822F3221E006BB18D /* RallyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		D2F3CCDE22F4B4E9009432B8 /* RallyWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2F3CCE622F4B4E9009432B8 /* Build configuration list for PBXNativeTarget "RallyWatch" */;
+			buildPhases = (
+				D2F3CCDA22F4B4E9009432B8 /* Headers */,
+				D2F3CCDB22F4B4E9009432B8 /* Sources */,
+				D2F3CCDC22F4B4E9009432B8 /* Frameworks */,
+				D2F3CCDD22F4B4E9009432B8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RallyWatch;
+			productName = RallWatch;
+			productReference = D2F3CCDF22F4B4E9009432B8 /* RallyWatch.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -148,8 +224,12 @@
 				TargetAttributes = {
 					D23326DE22F3221E006BB18D = {
 						CreatedOnToolsVersion = 11.0;
+						LastSwiftMigration = 1100;
 					};
 					D23326E722F3221E006BB18D = {
+						CreatedOnToolsVersion = 11.0;
+					};
+					D2F3CCDE22F4B4E9009432B8 = {
 						CreatedOnToolsVersion = 11.0;
 					};
 				};
@@ -169,6 +249,7 @@
 			targets = (
 				D23326DE22F3221E006BB18D /* Rally */,
 				D23326E722F3221E006BB18D /* RallyTests */,
+				D2F3CCDE22F4B4E9009432B8 /* RallyWatch */,
 			);
 		};
 /* End PBXProject section */
@@ -188,6 +269,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D2F3CCDD22F4B4E9009432B8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -195,6 +283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D233270522F322F6006BB18D /* RallyMatchController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +292,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				D23326EE22F3221E006BB18D /* RallyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2F3CCDB22F4B4E9009432B8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D24B470822F4B9E3007628E5 /* RallyMatchController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +437,7 @@
 		D23326F422F3221E006BB18D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2J9S2B5EZD;
@@ -356,14 +454,17 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.willbrandin.Rally;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		D23326F522F3221E006BB18D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2J9S2B5EZD;
@@ -380,14 +481,16 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.willbrandin.Rally;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 		D23326F722F3221E006BB18D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2J9S2B5EZD;
 				INFOPLIST_FILE = RallyTests/Info.plist;
@@ -406,6 +509,7 @@
 		D23326F822F3221E006BB18D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2J9S2B5EZD;
 				INFOPLIST_FILE = RallyTests/Info.plist;
@@ -418,6 +522,60 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D2F3CCE422F4B4E9009432B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 2J9S2B5EZD;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = RallyWatch/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.willbrandin.RallyWatch;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Debug;
+		};
+		D2F3CCE522F4B4E9009432B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 2J9S2B5EZD;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = RallyWatch/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.willbrandin.RallyWatch;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
 			};
 			name = Release;
 		};
@@ -447,6 +605,15 @@
 			buildConfigurations = (
 				D23326F722F3221E006BB18D /* Debug */,
 				D23326F822F3221E006BB18D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D2F3CCE622F4B4E9009432B8 /* Build configuration list for PBXNativeTarget "RallyWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2F3CCE422F4B4E9009432B8 /* Debug */,
+				D2F3CCE522F4B4E9009432B8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
