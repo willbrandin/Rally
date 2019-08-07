@@ -7,42 +7,32 @@
 //
 
 import Foundation
-import SwiftUI
 import Combine
 
-/// What would a controller need?
-/// Teams? How would this be provided? If I was to say increment for .teamOne?
-/// Settings: - Win by two, max score, how would other racket sports respond.
+/// Initialized with settings. Provides all game logic.
 public class RallyMatchController: ObservableObject {
     
-    // MARK: - Public Properties
+    // MARK: - Properties
     
-    public weak var delegate: RallyMatchControllerDelegate?
-    
-    // MARK: - Protected Properties
-        
-    @Published public internal(set) var teamOneScore: Int = 0 { // TODO: Make Bindable
+    @Published public internal(set) var teamOneScore: Int = 0 {
         didSet {
             if determineWin(for: .one) {
-                delegate?.teamDidWin(.one)
+                self.winningTeam = .one
             }
             
         }
     }
 
-    @Published public internal(set) var teamTwoScore: Int = 0 { // TODO: Make Bindable
+    @Published public internal(set) var teamTwoScore: Int = 0 {
         didSet {
             if determineWin(for: .two) {
-                delegate?.teamDidWin(.two)
+                self.winningTeam = .two
             }
         }
     }
     
-    @Published public internal(set) var servingTeam: RallyTeam = .one { // TODO: Make Bindable
-        didSet {
-            delegate?.teamWillServe(servingTeam)
-        }
-    }
+    @Published public internal(set) var servingTeam: RallyTeam = .one
+    @Published public internal(set) var winningTeam: RallyTeam? = nil
     
     private var settings: RallyMatchConfigurable!
     
@@ -67,17 +57,8 @@ public class RallyMatchController: ObservableObject {
     
     /// If combination of team scores are divisible by serve interval, toggle serves.
     /// If winByTwo, the team with the disadvantage will serve until they gain advantage.
-    func determineServingTeam() {
-        if teamOneScore >= settings.limit || teamTwoScore >= settings.limit {
-            // One score is over the limit.
-            let winningTeam: RallyTeam = teamOneScore > teamTwoScore ? .one : .two
-            
-            if servingTeam == winningTeam && teamOneScore != teamTwoScore { // Change server to the losing team, but not when tied. 
-                servingTeam = servingTeam.toggle()
-            }
-        } else if (teamOneScore + teamTwoScore) % settings.serveInterval == 0 {
-            servingTeam = servingTeam.toggle()
-        }
+    internal func determineServingTeam() {
+        self.servingTeam = determineServingTeam(with: settings, current: servingTeam, score: (teamOne: teamOneScore, teamTwo: teamTwoScore))
     }
     
     internal func determineWin(for team: RallyTeam) -> Bool {
@@ -89,22 +70,59 @@ public class RallyMatchController: ObservableObject {
                 return true
             } else if teamScore > settings.limit && opposingTeamScore == (teamScore - 2) { // if teamScore is above the limit, if the opposing team score is == 2 - teamScore then team score has won.
                 return true
-            } else {
-                return false
             }
+            
+            return false
         } else {
-            if teamScore == settings.limit {
-                return true
-            } else {
-                return false
-            }
+            return teamScore == settings.limit
         }
     }
     
-    // MARK: - Private Methods
-}
+    internal func determineServingTeam(with gameSettings: RallyMatchConfigurable, current servingTeam: RallyTeam, score: (teamOne: Int, teamTwo: Int)) -> RallyTeam {
+        let teamOneGamePoint = hasGamePoint(for: score.teamOne, against: score.teamTwo, with: gameSettings)
+        let teamTwoGamePoint = hasGamePoint(for: score.teamTwo, against: score.teamOne, with: gameSettings)
 
-public protocol RallyMatchControllerDelegate: class {
-    func teamDidWin(_ team: RallyTeam)
-    func teamWillServe(_ team: RallyTeam)
+        // If the scores both equal Game Point do nothing.
+        if score.teamOne == gameSettings.limit - 1 && score.teamTwo == gameSettings.limit - 1 {
+            return servingTeam
+        }
+        
+        // If team one has game point
+        if teamOneGamePoint {
+            return servingTeam == .one ? .two : servingTeam
+        }
+        
+        // If team two has game point
+        if teamTwoGamePoint {
+            return servingTeam == .one ? servingTeam : .one
+        }
+        
+        // If scores are above or equal to the limit and neither have game point, return the current serving team.
+        if score.teamOne >= gameSettings.limit && score.teamTwo >= gameSettings.limit && !teamOneGamePoint && !teamTwoGamePoint {
+            return servingTeam
+        }
+        
+        // If the scores added up are equally divisible by the serve interval, swap.
+        if (score.teamOne + score.teamTwo) % gameSettings.serveInterval == 0 {
+            return servingTeam.toggle()
+        }
+    
+        return servingTeam
+    }
+    
+    // MARK: - Private Methods
+    
+    private func hasGamePoint(for score: Int, against opponent: Int, with settings: RallyMatchConfigurable) -> Bool {
+        let teamHasSinglePointToScore = score >= settings.limit - 1
+        let opponentHasSinglePointToScore = opponent >= settings.limit - 1
+
+        if teamHasSinglePointToScore && !opponentHasSinglePointToScore {
+            return true
+        } else if score >= settings.limit && opponent >= settings.limit - 1 && settings.winByTwo {
+            // Only way a team can have higher that limit is win by two.
+            return teamHasSinglePointToScore && opponent == (score - 1)
+        } else {
+            return false
+        }
+    }
 }

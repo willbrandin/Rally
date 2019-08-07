@@ -77,6 +77,15 @@ class RallyTests: XCTestCase {
         XCTAssert(matchController.determineWin(for: .two))
     }
     
+    func testTeamOne_OverTake() {
+        matchController.teamOneScore = 10
+        matchController.teamTwoScore = 9
+        
+        matchController.incrementScore(for: .two) // 10- 10
+        matchController.incrementScore(for: .two) // 10-11
+        XCTAssert(matchController.servingTeam == .one)
+    }
+    
     func testTeamTwo_WinByTwo() {
         matchController.teamTwoScore = 10
         matchController.teamOneScore = 8
@@ -120,6 +129,18 @@ class RallyTests: XCTestCase {
         
         matchController.incrementScore(for: .one)
         XCTAssert(matchController.servingTeam == .one)
+    }
+    
+    func testServing_WithGamePoint() {
+        matchController.teamOneScore = 9
+        matchController.teamTwoScore = 0
+        
+        matchController.incrementScore(for: .one) // 10 - 0
+        XCTAssert(matchController.servingTeam == .two)
+        matchController.incrementScore(for: .two) // 10 - 1
+        XCTAssert(matchController.servingTeam == .two)
+        matchController.incrementScore(for: .two) // 10-2
+        XCTAssert(matchController.servingTeam == .two) // Should still be serving due to score being low
     }
     
     func testServingPastLimit() {
@@ -166,11 +187,11 @@ class RallyTests: XCTestCase {
         
         matchController.incrementScore(for: .one)
         matchController.incrementScore(for: .two)
-        XCTAssert(matchController.servingTeam == .two)
+        XCTAssert(matchController.servingTeam == .two) // 9-9
         
-        matchController.incrementScore(for: .one)
-        matchController.incrementScore(for: .two)
-        XCTAssert(matchController.servingTeam == .one) // 10-10
+        matchController.incrementScore(for: .one) // 10 - 9 two score
+        matchController.incrementScore(for: .two) // 10-10 two
+        XCTAssert(matchController.servingTeam == .two) // 10-10
         
         matchController.incrementScore(for: .one) // 11-10 Team Two should serve
         XCTAssert(matchController.servingTeam == .two)
