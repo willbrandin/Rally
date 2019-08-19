@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D2297081230AE2E30047E950 /* RallyMatchOverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2297080230AE2E30047E950 /* RallyMatchOverTests.swift */; };
+		D2297084230AE2FF0047E950 /* StandardSettingsTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2297083230AE2FF0047E950 /* StandardSettingsTemplate.swift */; };
+		D2297086230AE3910047E950 /* RallyMatchScoringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2297085230AE3910047E950 /* RallyMatchScoringTests.swift */; };
+		D2297089230AE41A0047E950 /* RallyTeamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2297088230AE41A0047E950 /* RallyTeamTests.swift */; };
+		D229708B230AE4960047E950 /* RallyMatchServingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229708A230AE4960047E950 /* RallyMatchServingTests.swift */; };
 		D23326E922F3221E006BB18D /* Rally.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D23326DF22F3221E006BB18D /* Rally.framework */; };
 		D23326EE22F3221E006BB18D /* RallyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23326ED22F3221E006BB18D /* RallyTests.swift */; };
 		D23326F022F3221E006BB18D /* Rally.h in Headers */ = {isa = PBXBuildFile; fileRef = D23326E222F3221E006BB18D /* Rally.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -30,6 +35,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D2297080230AE2E30047E950 /* RallyMatchOverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RallyMatchOverTests.swift; sourceTree = "<group>"; };
+		D2297083230AE2FF0047E950 /* StandardSettingsTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardSettingsTemplate.swift; sourceTree = "<group>"; };
+		D2297085230AE3910047E950 /* RallyMatchScoringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RallyMatchScoringTests.swift; sourceTree = "<group>"; };
+		D2297088230AE41A0047E950 /* RallyTeamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RallyTeamTests.swift; sourceTree = "<group>"; };
+		D229708A230AE4960047E950 /* RallyMatchServingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RallyMatchServingTests.swift; sourceTree = "<group>"; };
 		D23326DF22F3221E006BB18D /* Rally.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Rally.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D23326E222F3221E006BB18D /* Rally.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Rally.h; sourceTree = "<group>"; };
 		D23326E322F3221E006BB18D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -70,6 +80,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D229707C230AE2AD0047E950 /* Scoring */ = {
+			isa = PBXGroup;
+			children = (
+				D2297085230AE3910047E950 /* RallyMatchScoringTests.swift */,
+			);
+			path = Scoring;
+			sourceTree = "<group>";
+		};
+		D229707D230AE2B40047E950 /* Serving */ = {
+			isa = PBXGroup;
+			children = (
+				D229708A230AE4960047E950 /* RallyMatchServingTests.swift */,
+			);
+			path = Serving;
+			sourceTree = "<group>";
+		};
+		D229707F230AE2BF0047E950 /* MatchOver */ = {
+			isa = PBXGroup;
+			children = (
+				D2297080230AE2E30047E950 /* RallyMatchOverTests.swift */,
+			);
+			path = MatchOver;
+			sourceTree = "<group>";
+		};
+		D2297082230AE2EC0047E950 /* Templates */ = {
+			isa = PBXGroup;
+			children = (
+				D2297083230AE2FF0047E950 /* StandardSettingsTemplate.swift */,
+			);
+			path = Templates;
+			sourceTree = "<group>";
+		};
+		D2297087230AE40C0047E950 /* RallyTeam */ = {
+			isa = PBXGroup;
+			children = (
+				D2297088230AE41A0047E950 /* RallyTeamTests.swift */,
+			);
+			path = RallyTeam;
+			sourceTree = "<group>";
+		};
 		D23326D522F3221D006BB18D = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +156,11 @@
 		D23326EC22F3221E006BB18D /* RallyTests */ = {
 			isa = PBXGroup;
 			children = (
+				D2297082230AE2EC0047E950 /* Templates */,
+				D2297087230AE40C0047E950 /* RallyTeam */,
+				D229707F230AE2BF0047E950 /* MatchOver */,
+				D229707D230AE2B40047E950 /* Serving */,
+				D229707C230AE2AD0047E950 /* Scoring */,
 				D23326ED22F3221E006BB18D /* RallyTests.swift */,
 				D23326EF22F3221E006BB18D /* Info.plist */,
 			);
@@ -309,6 +364,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2297086230AE3910047E950 /* RallyMatchScoringTests.swift in Sources */,
+				D2297089230AE41A0047E950 /* RallyTeamTests.swift in Sources */,
+				D2297084230AE2FF0047E950 /* StandardSettingsTemplate.swift in Sources */,
+				D229708B230AE4960047E950 /* RallyMatchServingTests.swift in Sources */,
+				D2297081230AE2E30047E950 /* RallyMatchOverTests.swift in Sources */,
 				D23326EE22F3221E006BB18D /* RallyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
