@@ -14,25 +14,41 @@ public class RallyMatchController: ObservableObject {
     
     // MARK: - Properties
     
-    @Published public internal(set) var teamOneScore: Int = 0 {
+    @Published public var teamOneScore: Int = 0 {
         didSet {
             if determineWin(for: .one) {
                 self.winningTeam = .one
             }
             
+            determineServingTeam()
         }
     }
 
-    @Published public internal(set) var teamTwoScore: Int = 0 {
+    @Published public var teamTwoScore: Int = 0 {
         didSet {
             if determineWin(for: .two) {
                 self.winningTeam = .two
             }
+            
+            determineServingTeam()
         }
     }
     
-    @Published public internal(set) var servingTeam: RallyTeam = .one
-    @Published public internal(set) var winningTeam: RallyTeam? = nil
+    /// True when a team has won
+    @Published public var teamDidWin: Bool = false
+    
+    /// True when a RallyTeam has GamePoint - a single point left to win the game.
+    @Published public var teamHasGamePoint: Bool = false
+    
+    /// RallyTeam that is currently serving
+    @Published public var servingTeam: RallyTeam = .one
+    
+    /// RallyTeam that has won
+    @Published public internal(set) var winningTeam: RallyTeam? = nil {
+        didSet {
+            teamDidWin = winningTeam != nil
+        }
+    }
     
     private var settings: RallyMatchConfigurable!
     
@@ -42,18 +58,23 @@ public class RallyMatchController: ObservableObject {
         self.settings = settings
     }
     
-    // MARK: - Public Methods
+    public func setNewGame() {
+        teamOneScore = 0
+        teamTwoScore = 0
+        servingTeam = .one
+        teamDidWin = false
+        teamHasGamePoint = false
+        winningTeam = nil
+    }
+        
+    // MARK: - Internal Methods
     
-    public func incrementScore(for team: RallyTeam) {
+    internal func incrementScore(for team: RallyTeam) {
         switch team {
         case .one: teamOneScore += 1
         case .two: teamTwoScore += 1
         }
-        
-        determineServingTeam()
     }
-    
-    // MARK: - Internal Methods
     
     /// If combination of team scores are divisible by serve interval, toggle serves.
     /// If winByTwo, the team with the disadvantage will serve until they gain advantage.
@@ -82,6 +103,8 @@ public class RallyMatchController: ObservableObject {
         let teamOneGamePoint = hasGamePoint(for: score.teamOne, against: score.teamTwo, with: gameSettings)
         let teamTwoGamePoint = hasGamePoint(for: score.teamTwo, against: score.teamOne, with: gameSettings)
 
+        teamHasGamePoint = teamOneGamePoint || teamTwoGamePoint
+        
         // If the scores both equal Game Point do nothing.
         if score.teamOne == gameSettings.limit - 1 && score.teamTwo == gameSettings.limit - 1 {
             return servingTeam

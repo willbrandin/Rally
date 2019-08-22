@@ -98,4 +98,21 @@ class RallyMatchOverTests: XCTestCase {
         XCTAssertFalse(matchController.determineWin(for: .two))
         XCTAssertFalse(matchController.determineWin(for: .one))
     }
+    
+    func testNewGame() {
+        matchController.teamOneScore = 10
+        matchController.teamTwoScore = 9
+        
+        matchController.incrementScore(for: .one)
+        
+        XCTAssert(matchController.determineWin(for: .one))
+
+        matchController.setNewGame()
+        XCTAssert(matchController.teamOneScore == 0)
+        XCTAssert(matchController.teamTwoScore == 0)
+        XCTAssert(matchController.servingTeam == .one)
+        XCTAssertFalse(matchController.teamDidWin)
+        XCTAssertFalse(matchController.teamHasGamePoint)
+        XCTAssertNil(matchController.winningTeam)
+    }
 }
