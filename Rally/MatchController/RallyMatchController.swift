@@ -47,7 +47,12 @@ public class RallyMatchController: ObservableObject {
     @Published public internal(set) var winningTeam: RallyTeam? = nil {
         didSet {
             teamDidWin = winningTeam != nil
+            print("RallyMatchController: - Team \(String(describing: winningTeam)) did win.")
         }
+    }
+    
+    deinit {
+        print("RallyMatchController: - Deinit")
     }
     
     private var settings: RallyMatchConfigurable!
@@ -56,6 +61,7 @@ public class RallyMatchController: ObservableObject {
     
     public init(settings: RallyMatchConfigurable) {
         self.settings = settings
+        print("RallyMatchController: - Init")
     }
     
     public func setNewGame() {
@@ -65,6 +71,7 @@ public class RallyMatchController: ObservableObject {
         teamDidWin = false
         teamHasGamePoint = false
         winningTeam = nil
+        print("RallyMatchController: - New Game Set")
     }
         
     // MARK: - Internal Methods
